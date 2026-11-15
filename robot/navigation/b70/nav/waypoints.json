@@ -1,0 +1,291 @@
+{
+ "_note": "Origin = P5 (yellow parking mark of 2026-11-15 16:02). right: + along the wall towards the red zone; forward: + towards the wall/tables. Robot always faces the wall. Waypoints P0-P4 measured on the real robot on 2026-11-15 16:04 by parking on each mark and pressing X.",
+ "J_wheel_from_cmd": [
+  [
+   -4.971,
+   8.655,
+   4.039
+  ],
+  [
+   -5.027,
+   -8.605,
+   4.039
+  ],
+  [
+   9.998,
+   -0.05,
+   4.039
+  ]
+ ],
+ "cmd_order": [
+  "lateral(+right? confirm on robot)",
+  "forward",
+  "yaw"
+ ],
+ "encoder_wrap_rad": 25.1327,
+ "waypoints": {
+  "P0": {
+   "name": "绿区远位（起点）",
+   "right_cm": -133,
+   "forward_cm": 12,
+   "spread_cm": 8,
+   "runs": [
+    [
+     -142,
+     -51
+    ],
+    [
+     -136,
+     -35
+    ],
+    [
+     -132,
+     -42
+    ]
+   ],
+   "note": "真机标定 11-15 08:04（1 次记录取平均，吕志远）"
+  },
+  "P1": {
+   "name": "抬手极限位",
+   "right_cm": -133,
+   "forward_cm": 38,
+   "spread_cm": 8,
+   "runs": [
+    [
+     -151,
+     -7
+    ],
+    [
+     -139,
+     -7
+    ],
+    [
+     -140,
+     -5
+    ]
+   ],
+   "note": "真机标定 11-15 08:04（1 次记录取平均，吕志远）"
+  },
+  "P2": {
+   "name": "绿区工作位",
+   "right_cm": -133,
+   "forward_cm": 66,
+   "spread_cm": 9,
+   "runs": [
+    [
+     -156,
+     18
+    ],
+    [
+     -141,
+     27
+    ],
+    [
+     -142,
+     34
+    ]
+   ],
+   "note": "真机标定 11-15 08:04（1 次记录取平均，吕志远）"
+  },
+  "P3": {
+   "name": "红区工作位",
+   "right_cm": 151,
+   "forward_cm": 38,
+   "spread_cm": 6,
+   "runs": [
+    [
+     132,
+     66
+    ],
+    [
+     140,
+     71
+    ],
+    [
+     142,
+     74
+    ]
+   ],
+   "note": "真机标定 11-15 08:04（1 次记录取平均，吕志远）"
+  },
+  "P4": {
+   "name": "红区远位",
+   "right_cm": 150,
+   "forward_cm": -10,
+   "spread_cm": 11,
+   "runs": [
+    [
+     133,
+     17
+    ],
+    [
+     149,
+     25
+    ],
+    [
+     151,
+     20
+    ]
+   ],
+   "note": "真机标定 11-15 08:04（1 次记录取平均，吕志远）"
+  },
+  "P5": {
+   "name": "黄区（原点）",
+   "right_cm": 0,
+   "forward_cm": 0,
+   "spread_cm": 0,
+   "runs": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ]
+  }
+ },
+ "map": {
+  "_note": "Hand-built vector map. Floor lines from photos (yellow square = 1 m ruler). Waypoints: real-robot calibration 2026-11-15 16:04 (VR X-button marks, loop closure 4.5 cm, heading -0.2 deg). Map geometry placed so that P3 sits ~17 cm in front of the red zone's front line (as in the side photo); +-10 cm.",
+  "extent": {
+   "right": [
+    -2.8,
+    2.8
+   ],
+   "forward": [
+    -1.5,
+    2.0
+   ]
+  },
+  "wall_forward": 1.83,
+  "zones": [
+   {
+    "name": "黄区 1×1",
+    "color": "#ca8a04",
+    "right": [
+     -0.55,
+     0.45
+    ],
+    "forward": [
+     -0.57,
+     0.43
+    ]
+   },
+   {
+    "name": "绿区 2×1",
+    "color": "#15803d",
+    "right": [
+     -2.175,
+     -0.2
+    ],
+    "forward": [
+     0.55,
+     1.55
+    ]
+   },
+   {
+    "name": "红区 2×1",
+    "color": "#b91c1c",
+    "right": [
+     0.15,
+     2.15
+    ],
+    "forward": [
+     0.55,
+     1.55
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "name": "绿区桌",
+    "right": [
+     -2.16,
+     -0.6
+    ],
+    "forward": [
+     0.83,
+     1.43
+    ]
+   },
+   {
+    "name": "中间桌（灯架）",
+    "right": [
+     -0.6,
+     0.62
+    ],
+    "forward": [
+     1.13,
+     1.73
+    ]
+   },
+   {
+    "name": "红区桌（沙包）",
+    "right": [
+     0.62,
+     2.2
+    ],
+    "forward": [
+     0.69,
+     1.29
+    ]
+   }
+  ],
+  "marks": [
+   {
+    "name": "红区地面记号",
+    "points": [
+     [
+      0.81,
+      0.51
+     ],
+     [
+      1.18,
+      -0.06
+     ],
+     [
+      1.62,
+      0.47
+     ]
+    ]
+   },
+   {
+    "name": "绿区地面记号",
+    "points": [
+     [
+      -1.38,
+      0.68
+     ],
+     [
+      -0.66,
+      0.66
+     ]
+    ]
+   }
+  ],
+  "robot_shape": [
+   [
+    -0.35,
+    0.22
+   ],
+   [
+    0.35,
+    0.22
+   ],
+   [
+    0.17,
+    -0.4
+   ],
+   [
+    -0.17,
+    -0.4
+   ]
+  ],
+  "arm_reach_m": 0.65
+ }
+}

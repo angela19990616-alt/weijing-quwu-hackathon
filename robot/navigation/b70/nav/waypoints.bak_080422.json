@@ -1,0 +1,288 @@
+{
+ "_note": "Origin = P5 (yellow zone parking mark). right: + along the wall towards the red zone; forward: + towards the wall/tables. Robot always faces the wall. Mean of 3 teleop runs on 2026-11-15 (rec 084734, 085242, 085532); spread = max deviation of one run from the mean. P1 = arm-raise limit point. P2 forward was corrected to P3's level on the captain's instruction (11-15).",
+ "J_wheel_from_cmd": [
+  [
+   -4.971,
+   8.655,
+   4.039
+  ],
+  [
+   -5.027,
+   -8.605,
+   4.039
+  ],
+  [
+   9.998,
+   -0.05,
+   4.039
+  ]
+ ],
+ "cmd_order": [
+  "lateral(+right? confirm on robot)",
+  "forward",
+  "yaw"
+ ],
+ "encoder_wrap_rad": 25.1327,
+ "waypoints": {
+  "P0": {
+   "name": "绿区远位（起点）",
+   "right_cm": -137,
+   "forward_cm": -43,
+   "spread_cm": 8,
+   "runs": [
+    [
+     -142,
+     -51
+    ],
+    [
+     -136,
+     -35
+    ],
+    [
+     -132,
+     -42
+    ]
+   ]
+  },
+  "P1": {
+   "name": "抬手极限位",
+   "right_cm": -143,
+   "forward_cm": -6,
+   "spread_cm": 8,
+   "runs": [
+    [
+     -151,
+     -7
+    ],
+    [
+     -139,
+     -7
+    ],
+    [
+     -140,
+     -5
+    ]
+   ],
+   "note": "离桌最近、仍可安全抬起手臂的位置；再往前抬手会打到桌子"
+  },
+  "P2": {
+   "name": "绿区工作位",
+   "right_cm": -146,
+   "forward_cm": 70,
+   "spread_cm": 9,
+   "runs": [
+    [
+     -156,
+     18
+    ],
+    [
+     -141,
+     27
+    ],
+    [
+     -142,
+     34
+    ]
+   ],
+   "note": "队长 11-15 更正：P2 应与 P3 前后平齐。早上三次实录的前后值是 +18/+27/+34（平均 +26），录短了，这里按 P3 的前后值取。真机到位后需复核。"
+  },
+  "P3": {
+   "name": "红区工作位",
+   "right_cm": 138,
+   "forward_cm": 70,
+   "spread_cm": 6,
+   "runs": [
+    [
+     132,
+     66
+    ],
+    [
+     140,
+     71
+    ],
+    [
+     142,
+     74
+    ]
+   ]
+  },
+  "P4": {
+   "name": "红区远位",
+   "right_cm": 144,
+   "forward_cm": 21,
+   "spread_cm": 11,
+   "runs": [
+    [
+     133,
+     17
+    ],
+    [
+     149,
+     25
+    ],
+    [
+     151,
+     20
+    ]
+   ]
+  },
+  "P5": {
+   "name": "黄区（原点）",
+   "right_cm": 0,
+   "forward_cm": 0,
+   "spread_cm": 0,
+   "runs": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ]
+  }
+ },
+ "map": {
+  "_note": "Hand-built vector map. Floor lines from two photos (rectified front view + overhead view from the middle table; yellow square = 1 m ruler): green/red gap 0.36 m, yellow wall-side edge to green/red front line 0.12-0.13 m. Origin P5 assumed 0.55 m from the yellow square's green-side edge and 0.70 m from its wall-side edge (+-15 cm until taped). Units m: right = along the wall towards red, forward = towards the wall.",
+  "extent": {
+   "right": [
+    -2.8,
+    2.8
+   ],
+   "forward": [
+    -1.25,
+    2.25
+   ]
+  },
+  "wall_forward": 2.1,
+  "zones": [
+   {
+    "name": "黄区 1×1",
+    "color": "#ca8a04",
+    "right": [
+     -0.55,
+     0.45
+    ],
+    "forward": [
+     -0.3,
+     0.7
+    ]
+   },
+   {
+    "name": "绿区 2×1",
+    "color": "#15803d",
+    "right": [
+     -2.175,
+     -0.2
+    ],
+    "forward": [
+     0.82,
+     1.82
+    ]
+   },
+   {
+    "name": "红区 2×1",
+    "color": "#b91c1c",
+    "right": [
+     0.15,
+     2.15
+    ],
+    "forward": [
+     0.82,
+     1.82
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "name": "绿区桌",
+    "right": [
+     -2.16,
+     -0.6
+    ],
+    "forward": [
+     1.1,
+     1.7
+    ]
+   },
+   {
+    "name": "中间桌（灯架）",
+    "right": [
+     -0.6,
+     0.62
+    ],
+    "forward": [
+     1.4,
+     2.0
+    ]
+   },
+   {
+    "name": "红区桌（沙包）",
+    "right": [
+     0.62,
+     2.2
+    ],
+    "forward": [
+     0.96,
+     1.56
+    ]
+   }
+  ],
+  "marks": [
+   {
+    "name": "红区地面记号",
+    "points": [
+     [
+      0.81,
+      0.78
+     ],
+     [
+      1.18,
+      0.21
+     ],
+     [
+      1.62,
+      0.74
+     ]
+    ]
+   },
+   {
+    "name": "绿区地面记号",
+    "points": [
+     [
+      -1.38,
+      0.95
+     ],
+     [
+      -0.66,
+      0.93
+     ]
+    ]
+   }
+  ],
+  "robot_shape": [
+   [
+    -0.35,
+    0.22
+   ],
+   [
+    0.35,
+    0.22
+   ],
+   [
+    0.17,
+    -0.4
+   ],
+   [
+    -0.17,
+    -0.4
+   ]
+  ],
+  "arm_reach_m": 0.65
+ }
+}
