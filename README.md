@@ -38,3 +38,34 @@ python3 -m unittest discover -s tests -v
 
 后续接 ROS 时应保持仿真域 90 与真机域 29 隔离，单独实现底盘桥接；
 当前未实现 `/api/chassis/velocity` 订阅、轮编码器或导航 TF 输出。
+
+## 取物路线
+
+全程保持初始朝向：左下出发 → 左上 → 右上停车等待抓取确认 → 右下 → 中下停车满 15 秒 → 左下。
+中下暂定义为下边中点；宽、长必须由调用者明确提供，仓库没有真机场地尺寸。
+图中向上为初始机体 +x，向右为初始机体 -y；实机轴向需现场小幅验证。
+
+```bash
+# 以下尺寸仅用于仿真演示，不能当作实机场地测量值
+.venv/bin/mjpython sim/play_chassis.py --assets /absolute/path/to/mujoco --pick-route --width 0.4 --length 0.2
+```
+
+右上到点后按 G 确认抓取完成；提前按 G 无效。没有实际抓取模型或策略服务调用。
+空格取消路线并停车，其他运动键也会切回手动仿真。
+停留时间由仿真时钟计量，渲染慢时对应的墙钟时间可能更长。
+
+### 官方代码核对 2026-11-15
+
+- https://github.com/dexteleop/openpi/blob/main/examples/teleavatar_v2/main.py
+  使用 ROS 2 客户端收集观测，通过 WebSocket 调用策略，执行动作分块。
+- https://github.com/dexteleop/openpi/blob/main/examples/teleavatar_v2/ros2_interface.py
+  当前公开 `publish_action` 接受 16 维（左右各 7 关节 + 1 夹爪），发布双臂、夹爪及 FSM 心跳；
+  未提供定点底盘导航。比赛部署镜像的 chassis/76 维版本可能不同，不能直接混用。
+- https://github.com/dexteleop/openpi/blob/main/examples/teleavatar_v2/README.md
+  `zero.py` 会实际移动双臂；不能把它当作只读连通性测试。
+
+底盘文档接口为 `/api/chassis/velocity` 的 `[vx, vy, wz]`，单位 m/s、rad/s。
+使用该接口不需自行将速度换成轮速，但可靠到点必须有实际定位反馈。
+轮编码器里程计需要轮径、布局、减速比与符号；仅测轮距或累计命令速度不能保证距离准确。
+真机仍需检查模式、控制发布者、可用里程计/视觉定位、方向、制动距离、载物后的变化及后方净空。
+本项目仅运行本地仿真，不会自动启动官方实机控制示例。

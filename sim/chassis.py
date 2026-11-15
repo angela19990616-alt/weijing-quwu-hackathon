@@ -65,3 +65,49 @@ class Square:
         c, s = math.cos(chassis.yaw), math.sin(chassis.yaw)
         chassis.command([c * vx + s * vy, -s * vx + c * vy, 0])
         return False
+
+
+class PickRoute(Square):
+    """Simulation only: forward, right, backward, left, left. Fixed heading."""
+    def __init__(self, chassis, width, length):
+        if not all(math.isfinite(v) and v > 0 for v in (width, length)):
+            raise ValueError('width and length must be positive measured distances')
+        c, s = math.cos(chassis.yaw), math.sin(chassis.yaw)
+        # Diagram up = starting forward; diagram right = starting body -y.
+        offsets = [(length, 0), (length, -width), (0, -width),
+                   (0, -width / 2), (0, 0)]
+        self.points = [(chassis.x + c*x - s*y, chassis.y + s*x + c*y)
+                       for x, y in offsets]
+        self.index = 0
+        self.phase = 'moving'
+        self.dwell_start = None
+
+    def confirm_grasp(self):
+        if self.phase != 'wait_grasp':
+            return False
+        self.phase = 'moving'
+        return True
+
+    def tick(self, chassis):
+        if self.phase == 'wait_grasp':
+            chassis.command([0, 0, 0])
+            return False
+        if self.phase == 'dwell':
+            chassis.command([0, 0, 0])
+            if math.hypot(*chassis.velocity[:2]) > 0.0001:
+                self.dwell_start = None
+            elif self.dwell_start is None:
+                self.dwell_start = chassis.time
+            elif chassis.time - self.dwell_start >= 15.0:
+                self.phase = 'moving'
+            return False
+        previous = self.index
+        done = super().tick(chassis)
+        if self.index != previous:
+            if self.index == 2:
+                self.phase = 'wait_grasp'
+            elif self.index == 4:
+                self.phase = 'dwell'
+        if done:
+            self.phase = 'done'
+        return done
